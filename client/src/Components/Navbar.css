@@ -3,62 +3,59 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Habibi";
+  font-family: "Habibi", sans-serif; /* Added generic fallback */
 }
 
 .navbar {
-  position:fixed;
-  width:100%;
+  position: fixed;
+  width: 100%;
   text-align: center;
-  display:table;
-  top:0;
-  z-index:1;
-  background-color:#F1F8E8;
+  top: 0;
+  z-index: 1;
+  background-color: #F1F8E8;
 }
 
 .container {
-  margin:auto;
-  padding: 0;
-  display:flex;
+  margin: auto;
+  padding: 10px; /* Added padding for spacing */
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  height: fit-content;
+}
 
-  .logo{
-    position:relative;
-    width:30%;
-    display:table-cell;
-    vertical-align: middle;
-    float:left;
-    height:inherit;
-    font-size: 3vw;
-    margin:0;
+.logo {
+  font-size: 3vw;
+  color: #55AD9B;
+
+  a{
+    text-decoration:none;
     color: #55AD9B;
   }
+}
 
-  .nav-elements{
-    position:relative;
-    width:70%;
-    float:right;
-  }
-  
-  .nav-elements ul {
-    display: flex;
-    justify-content:space-evenly;
-    list-style-type: none;
-    font-size:1.5vw;
-  }
+.nav-elements {
+  flex: 1; /* Take remaining space */
+  text-align: right;
+}
 
-  .nav-elements a{
-    text-decoration: none;
-    color:black;
-  }
+.nav-elements ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  font-size: 1.5vw;
+  margin: 0;
+  padding: 0;
+}
 
-  .nav-elements a:hover{
-    cursor:pointer;
-    text-decoration:underline;
-    text-underline-offset: 2vh;
-    color:#55AD9B;
-    transition:0.3s;
-  }
+.nav-elements a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-elements a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2vh;
+  color: #55AD9B;
+  transition: 0.3s;
 }

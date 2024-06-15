@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Habibi&display=swap');
+
+body {
+  background-color: #F1F8E8;
+  margin: 0;
+  padding: 0;
+  font-family: "Habibi";
+  overflow-y: hidden;
+}
+
+.CreateAccount {
+  #createAccountLink {
+    text-decoration: underline;
+    text-underline-offset: 2vh;
+    color: #55AD9B;
+  }
+
+  .CreateAccount-Header {
+    position: relative;
+    margin-top: 5%;
+
+  }
+
+  .Front-Face {
+    position: relative;
+    display: flex;
+    margin: auto;
+    padding: 0;
+  }
+
+  .Left {
+    width: 35%;
+    font-family: "Habibi";
+    font-size: 3vw;
+    text-align: center;
+    padding: 5vw;
+    justify-content: center;
+    align-items: center;
+
+    #message {
+      font-size: 1.5vw;
+    }
+
+    .Credentials {
+      margin-top: 10%;
+      font-size: 1.5vw;
+      vertical-align: center;
+      display: flexbox;
+      justify-content: space-between;
+      text-align: left;
+
+      .Element {
+        margin-top: 10%;
+
+        input {
+          width: 100%;
+          border-radius: .5vw;
+          border: 2px solid black;
+          height: 3vh;
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  .Buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+  }
+
+  .Button-Animate {
+    background-color: #D8EFD3;
+    background-image: linear-gradient(to right, #D8EFD3, #55AD9B);
+    border: 2px solid #55AD9B;
+    font-family: "Habibi";
+    font-size: 2vw;
+    border-radius: 0.5vw;
+    padding: 1vh 5vh;
+  }
+
+  .Button-Animate:hover {
+    background-color: #55AD9B;
+    background-image: none;
+    transition: 1s;
+    cursor: pointer;
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .Button-Animate.animate {
+    animation: pop 0.7s ease-in-out;
+  }
+
+  .Right {
+    width: 65%;
+    padding: 5vw;
+    background-image: url('../Media/background.jpg');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: inherit;
+    font-size:2.5vw;
+
+    img{
+      object-fit:cover;
+      height:inherit;
+      width:inherit;
+    }
+  }
+}
