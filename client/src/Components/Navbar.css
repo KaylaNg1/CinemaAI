@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Habibi&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Habibi";
+}
+
+.navbar {
+  position:fixed;
+  width:100%;
+  text-align: center;
+  display:table;
+  top:0;
+  z-index:1;
+  background-color:#F1F8E8;
+}
+
+.container {
+  margin:auto;
+  padding: 0;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+
+  .logo{
+    position:relative;
+    width:30%;
+    display:table-cell;
+    vertical-align: middle;
+    float:left;
+    height:inherit;
+    font-size: 3vw;
+    margin:0;
+    color: #55AD9B;
+  }
+
+  .nav-elements{
+    position:relative;
+    width:70%;
+    float:right;
+  }
+  
+  .nav-elements ul {
+    display: flex;
+    justify-content:space-evenly;
+    list-style-type: none;
+    font-size:1.5vw;
+  }
+
+  .nav-elements a{
+    text-decoration: none;
+    color:black;
+  }
+
+  .nav-elements a:hover{
+    cursor:pointer;
+    text-decoration:underline;
+    text-underline-offset: 2vh;
+    color:#55AD9B;
+    transition:0.3s;
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "cinemaai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1",
+    "npm": "^7.24.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
