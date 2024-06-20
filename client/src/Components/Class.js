@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import './Cover.css';
-import Navbar from '../Components/Navbar';
-import front from '../Media/front.png';
+import './NotesHome.css';
+import UserNavbar from '../Components/UserNavbar';
+import noteIcon from '../Media/noteIcon.png';
 
-function Cover() {
+function Class() {
+
   useEffect(() => {
     const animateButton = (e) => {
       e.preventDefault();
@@ -28,23 +29,12 @@ function Cover() {
   }, []);
 
   return (
-    <div className="Home">
-      <Navbar />
-      <div className="Home-Header">
-        <div className="Front-Face">
-          <div className="Left">
-            Organize your thoughts better with <span style={{ color: '#55AD9B' }}>EduNotes</span>
-            <div className="Buttons">
-              <button className="Button-Animate animate">Learn More</button>
-            </div>
-          </div>
-          <div className="Right">
-            <img src={front} alt="Front" />
-          </div>
-        </div>
+    <div className="Class">
+      <div className="ClassHeader">
+        
       </div>
     </div>
   );
 }
 
-export default Cover;
+export default Class;

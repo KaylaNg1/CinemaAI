@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom'
 // import { ReactComponent as Brand } from '../../assets/icons/logo.svg'
-import './Navbar.css'
+import './UserNavbar.css'
+import profile from '../Media/profile.png'
 
-const Navbar = () => {
+const UserNavbar = () => {
   return (
     <nav className="navbar">
       <div className="container">
@@ -12,19 +13,19 @@ const Navbar = () => {
         <div className="nav-elements">
           <ul>
             <li>
-              <NavLink to="/about" activeClassName="active-link">about</NavLink>
+              <NavLink to="/notesHome" activeClassName="active-link" id= "notesLink">notes</NavLink>
             </li>
             <li>
-              <NavLink to="/createAccount" activeClassName="active-link" id = "createAccountLink">create account</NavLink>
-            </li>
-            <li>
-              <NavLink to="/login" activeClassName="active-link" id = "loginLink">login</NavLink>
+              <NavLink to="/createAccount" activeClassName="active-link" id = "studyLink">study</NavLink>
             </li>
           </ul>
+        </div>
+        <div className="profile">
+          <NavLink to="/profile" activeClassName="active-link" id = "profileLink"><img src = {profile}/></NavLink>
         </div>
       </div>
     </nav>
   )
 }
 
-export default Navbar
+export default UserNavbar

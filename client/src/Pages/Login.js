@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import './Cover.css';
+import './Login.css';
 import Navbar from '../Components/Navbar';
-import front from '../Media/front.png';
+import noteIcon from '../Media/noteIcon.png';
 
-function Cover() {
+function Login() {
   useEffect(() => {
     const animateButton = (e) => {
       e.preventDefault();
@@ -26,20 +26,35 @@ function Cover() {
       }
     };
   }, []);
-
   return (
-    <div className="Home">
+    <div className="Login">
       <Navbar />
-      <div className="Home-Header">
+      <div className="Login-Header">
         <div className="Front-Face">
           <div className="Left">
-            Organize your thoughts better with <span style={{ color: '#55AD9B' }}>EduNotes</span>
+            Login
+            <br />
+            <span id="message">welcome back, friend :)</span>
+            <div className="Credentials">
+              <div className="Element">
+                Email address:
+                <br/>
+                <input />
+              </div>
+              <div className="Element">
+                Password:
+                <br/>
+                <input />
+              </div>
+            </div>
             <div className="Buttons">
-              <button className="Button-Animate animate">Learn More</button>
+              <button className = "Button-Animate">Login</button>
             </div>
           </div>
           <div className="Right">
-            <img src={front} alt="Front" />
+            Embark on your <span style={{"fontWeight": "bolder" }}>note organization</span> journey with us.
+            <br/>
+            <img src = {noteIcon}/>
           </div>
         </div>
       </div>
@@ -47,4 +62,4 @@ function Cover() {
   );
 }
 
-export default Cover;
+export default Login;
