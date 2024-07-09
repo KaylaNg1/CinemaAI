@@ -1,20 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './NotesHome.css';
 import UserNavbar from '../Components/UserNavbar';
-import AddClass from '../Components/AddClass'
+import Class from '../Components/Class';
 
 function NotesHome() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-
   useEffect(() => {
     const animateButton = (e) => {
       e.preventDefault();
@@ -45,11 +34,16 @@ function NotesHome() {
         <div className="Table-Header">
           Classes
         </div>
-        <div className="Table">
-          <button className="Button-Animate" onClick={handleOpen} onClose={handleClose}
-          ><div className="AddClass" />+</button>
-          <AddClass isOpen={open} onClose={handleClose}>
-          </AddClass>
+        <div className="Classes">
+          {/* <button className="Button-Animate" onClick={handleOpen}>
+            <div className="AddClass">+</div>
+          </button>
+          <AddClass isOpen={open} onClose={handleClose} />
+          <Class />
+          <Class />
+          <Class /> */}
+          {/* Add more <Class /> components as needed */}
+          <Class/>
         </div>
       </div>
     </div>

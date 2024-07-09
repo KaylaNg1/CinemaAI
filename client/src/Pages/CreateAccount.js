@@ -22,8 +22,7 @@ function CreateAccount() {
     };
   
     try {
-      console.log("in try catch");
-      const response = await fetch("http://localhost:8000/uploadUserData", {
+      const response = await fetch("http://localhost:5000/uploadUserData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

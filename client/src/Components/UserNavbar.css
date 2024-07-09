@@ -57,7 +57,7 @@ body {
 }
 
 .nav-elements a:hover {
-  cursor: pointer;
+  /* cursor: pointer; */
   text-decoration: underline;
   text-underline-offset: 2vh;
   color: #55AD9B;

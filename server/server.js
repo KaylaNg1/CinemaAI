@@ -6,7 +6,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your client's origin
+  origin: 'http://localhost:8000', // Replace with your client's origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
   allowedHeaders: ['Content-Type'], // Allowed headers
 }));
@@ -17,8 +17,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 // MongoDB connection
 const mongoURI = process.env.MONGO_URL
-const PORT = process.env.PORT;
-
+const PORT = 8001;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(mongoURI, {
   serverApi: {

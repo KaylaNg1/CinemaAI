@@ -1,28 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AddClass.css';
+import {getClasses} from '../Components/Class'
 
 const AddClass = ({ isOpen, onClose }) => {
-  async function getClasses() {
-    try {
-      const response = await fetch("http://localhost:8000/getClasses", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-  
-      if (!response.ok) {
-        // Request failed
-        console.error("Error inserting data:", response.statusText);
-      }
-
-      const data = await response.json();
-      
-    } catch (error) {
-      console.error("Error accessing endpoint:", error);
-    }
-  }
-
   async function createClass() {
     const className = document.querySelector("[name=className]").value;
 
@@ -31,14 +11,14 @@ const AddClass = ({ isOpen, onClose }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:8000/addClass", {
+      const response = await fetch("http://localhost:8001/addClass", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (response.ok) {
         // Request was successful
         console.log("Data inserted successfully");
