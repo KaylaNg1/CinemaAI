@@ -41,7 +41,7 @@ body {
       font-size: 1.5vw;
     }
 
-    .Credentials {
+    #Credentials {
       margin-top: 10%;
       font-size: 1.5vw;
       vertical-align: center;

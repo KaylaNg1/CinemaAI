@@ -6,45 +6,48 @@ import { useNavigate } from "react-router-dom";
 
 function CreateAccount() {
 
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = '../notesHome'; 
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = '../notesHome';
     navigate(path);
   }
 
-  async function createAccount() {
-    const email = document.querySelector("[name=email]").value;
-    const password = document.querySelector("[name=password]").value;
-  
-    const formData = {
-      email: email,
-      password: password
-    };
-  
-    try {
-      const response = await fetch("http://localhost:5000/uploadUserData", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (response.ok) {
-        // Request was successful
-        console.log("Data inserted successfully");
-        routeChange()
-
-      } else {
-        // Request failed
-        console.error("Error inserting data:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error accessing endpoint:", error);
-    }
-  }
-
   useEffect(() => {
+    const form = document.getElementById("Credentials");
+    const createAccount = async (event) => {
+      event.preventDefault();
+      const email = document.querySelector("[name=email]").value;
+      const password = document.querySelector("[name=password]").value;
+
+      const formData = {
+        email: email,
+        password: password
+      };
+
+      try {
+        const response = await fetch("http://localhost:8001/createAccount", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          // Request was successful
+          console.log("Data inserted successfully");
+          routeChange();
+        } else {
+          // Request failed
+          console.error("Error inserting data:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error accessing endpoint:", error);
+      }
+    };
+
+    form.addEventListener('submit', createAccount);
+
     const animateButton = (e) => {
       e.preventDefault();
       e.target.classList.remove('animate');
@@ -61,6 +64,7 @@ function CreateAccount() {
     }
 
     return () => {
+      form.removeEventListener('submit', createAccount);
       for (let i = 0; i < bubblyButtons.length; i++) {
         bubblyButtons[i].removeEventListener('click', animateButton, false);
       }
@@ -76,26 +80,26 @@ function CreateAccount() {
             Create Account
             <br />
             <span id="message">join us! create an account today :)</span>
-            <div className="Credentials">
+            <form id="Credentials">
               <div className="Element">
                 Email address:
                 <br />
-                <input name="email" type="email" />
+                <input name="email" type="email" placeholder="email address" />
               </div>
               <div className="Element">
                 Password:
                 <br />
-                <input name="password" type="password" />
+                <input name="password" type="password" placeholder="password" />
               </div>
               <div className="Element">
                 Re-type Password:
                 <br />
-                <input name="re-password" type="password" />
+                <input name="re-password" type="password" placeholder="re-type password" />
               </div>
-            </div>
-            <div className="Buttons">
-              <button className="Button-Animate" onClick={createAccount}>Create Account</button>
-            </div>
+              <input type="submit" value="Create Account" />
+            </form>
+            {/* <div className="Buttons"> */}
+            {/* </div> */}
           </div>
           <div className="Right">
             Embark on your <span style={{ fontWeight: 'bolder' }}>note organization</span> journey with us.
