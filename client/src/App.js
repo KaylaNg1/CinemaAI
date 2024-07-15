@@ -4,6 +4,7 @@ import Cover from './Pages/Cover';
 import CreateAccount from './Pages/CreateAccount';
 import Login from './Pages/Login';
 import NotesHome from './Pages/NotesHome'
+import ClassHome from './Pages/ClassHome'
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/createAccount" element={<CreateAccount />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/notesHome" element={<NotesHome/>} />
+          <Route path="/classHome" element={<ClassHome/>} />
         </Routes>
       </Router>
     </div>

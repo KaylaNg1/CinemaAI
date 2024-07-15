@@ -74,6 +74,9 @@ app.post('/createAccount', cors(), async (req, res) => {
     })
     // await user.save();
     await collection.insertOne(user); // Insert the request payload into the database
+    const token = jwt.sign({ id: user._id, email: user.email },
+      JWT_SECRET)
+    res.cookie('token', token, { expire: new Date() + 1 })
     res.json({ message: 'Data inserted successfully' });
   } catch (error) {
     console.error("Error accessing endpoint:", error); // Log the error
@@ -82,40 +85,50 @@ app.post('/createAccount', cors(), async (req, res) => {
 });
 
 app.post('/login', cors(), async (req, res) => {
-  console.log("in login endpoint");
-  console.log(req.body); // Log the request payload
   const { email, password } = req.body
 
-  const user = await collection.findOne({email})
+  const user = await collection.findOne({ email })
 
   if (!user) {
     return res.json({ status: 'error', error: 'Invalid username/password' })
   }
-  console.log("HERE")
-  console.log(user)
+
   if (await bcrypt.compare(password, user.password)) {
-    console.log("HERE")
-    console.log(JWT_SECRET)
-    const token = jwt.sign({id: user._id, email: user.email},
+    const token = jwt.sign({ id: user._id, email: user.email },
       JWT_SECRET
     ) // want bare minimum information
-    console.log("HELLO?")
+    // res.cookie('token', token, { expire: new Date() + 1 })
     return res.json({ status: 'ok', data: token })
   }
-  else{
+  else {
     return res.json({ status: 'error', error: 'Invalid username/password' })
   }
 
-
 });
 
-app.post('/addClass', cors(), async (req, res) => {
-  console.log("in add class endpoint");
-  console.log(req.body); // Log the request payload
-  collection = client.db("EduNotes").collection("classes");
+app.get('/signOut', cors(), async (req, res) => {
+  res.clearCookie("token")
+  return res.json({ message: "User signout successful" })
+})
 
+app.post('/changePassword', cors(), async (req, res) => {
+  const { token } = req.body
+  const user = jwt.verify(token, JWT_SECRET)
+  res.json({ status: 'ok' })
+})
+
+app.post('/addClass', cors(), async (req, res) => {
+  const className = req.body.class
+  const token = req.body.token
+  const {id, email, iat} = jwt.verify(token, JWT_SECRET)
+  collection = client.db("EduNotes").collection("classes");
   try {
-    await collection.insertOne(req.body); // Insert the request payload into the database
+    const classData = {
+      email: email,
+      class: className,
+      notes: []
+    };
+    await collection.insertOne(classData); // Insert the request payload into the database
     res.json({ message: 'Data inserted successfully' });
   } catch (error) {
     console.error("Error accessing endpoint:", error); // Log the error
@@ -123,17 +136,41 @@ app.post('/addClass', cors(), async (req, res) => {
   }
 });
 
-app.get('/getClasses', cors(), async (req, res) => {
-  console.log("in get class endpoint");
+app.post('/getClasses', cors(), async (req, res) => {
+  const {token} = req.body
+  const {id, email, _} = jwt.verify(token, JWT_SECRET)
+
   collection = client.db("EduNotes").collection("classes");
 
   try {
-    const cursor = collection.find({}, { projection: { class: 1 } })
+    const query = {email: email}
+    const cursor = collection.find(query)
     classes = []
     await cursor.forEach(doc => {
       classes.push(doc.class);
     });
     res.json(classes);
+  } catch (error) {
+    console.error("Error accessing endpoint:", error); // Log the error
+    res.status(500).json({ error: 'Internal Server Error' }); // Send an error response to the client
+  }
+});
+
+app.post('/getNotes', cors(), async (req, res) => {
+  const {token} = req.body
+  const {id, email, _} = jwt.verify(token, JWT_SECRET)
+
+  collection = client.db("EduNotes").collection("notes");
+
+  try {
+    const query = {email:email}
+    const cursor = collection.find(query)
+    notes = []
+    await cursor.forEach(doc => {
+      notess.push(doc.class);
+    });
+    print("notes ", notes)
+    res.json(notes);
   } catch (error) {
     console.error("Error accessing endpoint:", error); // Log the error
     res.status(500).json({ error: 'Internal Server Error' }); // Send an error response to the client

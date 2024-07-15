@@ -36,7 +36,9 @@ function Login() {
 
         if (response.status == 'ok') {
           // Request was successful
-          console.log("Got the token: ", response.data);
+          const token = response.data
+          localStorage.setItem('token', token)
+          console.log("TOKEN: ", token)
           routeChange();
         } else {
           // Request failed

@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Habibi&display=swap');
+
+body {
+  background-color: #F1F8E8;
+  margin: 0;
+  padding: 0;
+  font-family: "Habibi";
+  overflow-y: visible;
+}
+
+.Class {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5vw;
+}
+
+.Table {
+  display: grid;
+  padding: 1.5vw;
+  grid-template-rows: repeat(4, 100px);
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;  
+  column-gap: 1vw;
+  row-gap: 1.5vw;
+  width: 100%;
+
+  .Button-Animate {
+    background-color: #55AD9B;
+    background-image: none;
+    border: 2px solid black;
+    font-family: "Habibi";
+    font-size: 2vw;
+    border-radius: 0.5vw;
+    padding: 1vh 5vh;
+  }
+
+  .Button-Animate:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .AddNotes:hover {
+    cursor: pointer;
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .Button-Animate.animate {
+    animation: pop 0.7s ease-in-out;
+  }
+}
+
+.NoteName {
+  font-size: 18px;
+  font-weight: bold;
+}

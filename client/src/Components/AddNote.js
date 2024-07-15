@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './AddClass.css';
+import './AddNote.css';
 import {getClasses} from '../Components/Class'
 
-const AddClass = ({ isOpen, onClose }) => {
-  async function createClass() {
+const AddNote = ({ isOpen, onClose }) => {
+  async function createNote() {
     const className = document.querySelector("[name=className]").value;
     console.log(className)
 
@@ -67,7 +67,7 @@ const AddClass = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="AddClass"
+    <div className="AddNote"
       style={{
         position: "fixed",
         top: 0,
@@ -94,18 +94,18 @@ const AddClass = ({ isOpen, onClose }) => {
       >
         <button className="Close" onClick={onClose}>x</button>
         <br />
-        <h1>Add Class</h1>
+        <h1>Add Note</h1>
         <div className="Element">
-          Class Name:
+          Note Name:
           <br />
           <input name="className" type="text" />
         </div>
         <div className="Buttons">
-          <button className="Button-Animate" onClick={createClass}>Submit</button>
+          <button className="Button-Animate" onClick={createNote}>Submit</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default AddClass;
+export default AddNote;

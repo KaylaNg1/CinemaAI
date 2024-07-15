@@ -35,15 +35,7 @@ function NotesHome() {
           Classes
         </div>
         <div className="Classes">
-          {/* <button className="Button-Animate" onClick={handleOpen}>
-            <div className="AddClass">+</div>
-          </button>
-          <AddClass isOpen={open} onClose={handleClose} />
           <Class />
-          <Class />
-          <Class /> */}
-          {/* Add more <Class /> components as needed */}
-          <Class/>
         </div>
       </div>
     </div>

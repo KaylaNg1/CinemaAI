@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './Class.css';
-import AddNote from '../Components/AddNote';
+import './ClassHome.css';
+import UserNavbar from '../Components/UserNavbar';
 import { useNavigate } from "react-router-dom";
+import Notes from '../Components/Notes'
 
 export async function getClasses() {
   try {
-    const response = await fetch("http://localhost:8001/getClasses", {
+    const response = await fetch("http://localhost:8001/getNotes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -28,13 +29,7 @@ export async function getClasses() {
   }
 }
 
-function Class() {
-  let navigate = useNavigate();
-  const openClass = () => {
-    let path = '../classHome';
-    navigate(path);
-}
-
+function ClassHome() {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(null);
 
@@ -91,21 +86,18 @@ function Class() {
   }, []); // Ensure useEffect runs only once
 
   return (
-    <div className="Class">
-      <div className="Table">
-        <button className="Button-Animate" onClick={handleOpen}>
-          <div className="AddNote">+</div>
-        </button>
-        <AddNote isOpen={open} onClose={handleClose} />
-        {/* Add more <Class /> components as needed */}
-        {data.map((item, index) => (
-          <button key={index} className="Button-Animate" onClick = {openClass}>
-            <div className='ClassName'>{item}</div>
-          </button>
-        ))}
+    <div className="ClassHome">
+      <UserNavbar />
+      <div className="ClassHome-Header">
+        <div className="Table-Header">
+          Notes
+        </div>
+        <div className="Notes">
+          <Notes />
+        </div>
       </div>
     </div>
   );
 }
 
-export default Class;
+export default ClassHome;

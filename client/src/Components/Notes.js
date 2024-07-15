@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export async function getClasses() {
   try {
-    const response = await fetch("http://localhost:8001/getClasses", {
+    const response = await fetch("http://localhost:8001/getNotes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -28,13 +28,7 @@ export async function getClasses() {
   }
 }
 
-function Class() {
-  let navigate = useNavigate();
-  const openClass = () => {
-    let path = '../classHome';
-    navigate(path);
-}
-
+function Notes() {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(null);
 
@@ -99,8 +93,8 @@ function Class() {
         <AddNote isOpen={open} onClose={handleClose} />
         {/* Add more <Class /> components as needed */}
         {data.map((item, index) => (
-          <button key={index} className="Button-Animate" onClick = {openClass}>
-            <div className='ClassName'>{item}</div>
+          <button key={index} className="Button-Animate">
+            <div className='NoteName'>{item}</div>
           </button>
         ))}
       </div>
@@ -108,4 +102,4 @@ function Class() {
   );
 }
 
-export default Class;
+export default Notes;
